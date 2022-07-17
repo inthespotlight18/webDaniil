@@ -7,8 +7,7 @@ using System.ServiceModel.Web;
 using System.IO;
 using System.Web;
 
-
-using Model;
+using VIEW;
 
 
 namespace ConsoleApp3
@@ -19,12 +18,17 @@ namespace ConsoleApp3
         {
             return 99;
         }
+
         public static string ShowTheIp()
         {
             var ip = HttpContext.Current != null ? HttpContext.Current.Request.UserHostAddress : "No IP";
             Console.WriteLine(ip);
             return ip;
         }
+
+        /******************************************************************************************\                           
+        *                                                                                          *
+        \******************************************************************************************/
 
         public Stream GetPage()
         {
@@ -36,9 +40,11 @@ namespace ConsoleApp3
             WebOperationContext.Current.OutgoingResponse.ContentType = "text/html";
             byte[] htmlBytes = Encoding.UTF8.GetBytes(h);
             return new MemoryStream(htmlBytes);
-
         }
 
+        /******************************************************************************************\
+        *                                                                                          * 
+        \******************************************************************************************/
 
         public static List<string> GetWebMethods(WebServiceHost host, Type intf)
         {
@@ -70,12 +76,19 @@ namespace ConsoleApp3
 
             return methods;
         }
+
+        /************************************************************************************************\               
+        *                                                                                                *   
+        \************************************************************************************************/
         public Stream Info()
         {
             WebOperationContext.Current.OutgoingResponse.ContentType = "text/html";
-            return new MemoryStream(Encoding.UTF8.GetBytes(VIEW.ListToHTML( GetWebMethods(Program._HOST, typeof(iWCFDaniil) ) ) ) );
+            return new MemoryStream(Encoding.UTF8.GetBytes(DataPresenter.ListToHTML( GetWebMethods(Program._HOST, typeof(iWCFDaniil) ) ) ) );
         }
 
         
     }
 }
+/******************************************************************************************\
+*                                                                                          *                                                                                                                                                                                                                      *
+\******************************************************************************************/

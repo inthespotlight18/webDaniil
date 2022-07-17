@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 
 
-namespace Model
+namespace VIEW
 {
-    public class VIEW
+    public class DataPresenter
     {
-
-        // Data Presenter class
         public static string ListToHTML(List<string> l)
         {
             string html = @"
@@ -49,9 +47,8 @@ namespace Model
         }
 
 
-
-
-
-
     }
 }
+/******************************************************************************************\
+*                                                                                          * 
+\******************************************************************************************/

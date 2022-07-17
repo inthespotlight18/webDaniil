@@ -1,7 +1,6 @@
 ﻿using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.IO;
-using System.Collections.Generic;
 
 namespace ConsoleApp3
 {
