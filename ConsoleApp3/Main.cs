@@ -36,9 +36,7 @@ namespace ConsoleApp3
             var binding = new WebHttpBinding(); 
             _HOST.AddServiceEndpoint(typeof(iWCFDaniil), binding, "wcfDaniil");
 
-            List<string> r = oWCFDaniil.GetWebMethods(_HOST, typeof(iWCFDaniil));
-            
-
+           
             _HOST.Open();
 
             Console.WriteLine("Commence with the testing!");
