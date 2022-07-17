@@ -9,7 +9,6 @@ using System.Web;
 
 using VIEW;
 
-
 namespace ConsoleApp3
 {
     class oWCFDaniil : iWCFDaniil

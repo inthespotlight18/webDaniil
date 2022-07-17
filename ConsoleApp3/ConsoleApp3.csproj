@@ -84,7 +84,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GetHTML.cs" />
     <Compile Include="Model\Class1.cs" />
     <Compile Include="View\VIEW.cs" />
     <Compile Include="oWCFDaniil.cs" />

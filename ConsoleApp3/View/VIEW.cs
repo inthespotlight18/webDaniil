@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 
-
 namespace VIEW
 {
     public class DataPresenter
