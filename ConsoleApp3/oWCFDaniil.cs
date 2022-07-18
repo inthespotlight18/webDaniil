@@ -1,50 +1,95 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+
+using System.ServiceModel;
+using System.ServiceModel.Channels;
+//using System.ServiceModel.Configuration;
 using System.ServiceModel.Description;
+//using System.ServiceModel.Dispatcher;
+using System.ServiceModel.Web;
+
 using System.Reflection;
 using System.ServiceModel.Web;
 using System.IO;
 using System.Web;
 
-using VIEW;
+//using View;
+
+// Only Interface functions should be in oWCFDaniil (other methods get moved to Model, View, Gapp)
 
 namespace ConsoleApp3
 {
     class oWCFDaniil : iWCFDaniil
     {
+        /*******************************************************************************************************************\
+         *                                                                                                                 *
+        \*******************************************************************************************************************/
+
         public int GetInfo()
         {
             return 99;
         }
 
-        public static string ShowTheIp()
+
+        /*******************************************************************************************************************\
+         *                                                                                                                 *
+        \*******************************************************************************************************************/
+        
+        // This should be moved to Gapp namespace
+
+        public static string get_the_ip()
         {
             var ip = HttpContext.Current != null ? HttpContext.Current.Request.UserHostAddress : "No IP";
-            Console.WriteLine(ip);
+            //Console.WriteLine(ip);
             return ip;
         }
 
-        /******************************************************************************************\                           
-        *                                                                                          *
-        \******************************************************************************************/
+        private string GetClientIP()
+        {
+            OperationContext context = OperationContext.Current;
+            MessageProperties prop = context.IncomingMessageProperties;
+            RemoteEndpointMessageProperty endpoint =
+               prop[RemoteEndpointMessageProperty.Name] as RemoteEndpointMessageProperty;
+            string ip = endpoint.Address;
+
+            return ip;
+        }
+
+
+        public Stream ShowClientIP()
+        {
+            string html = "<html><body>";
+
+            html += string.Format("<h3>{0}|{1}</h3>", DateTime.Now, GetClientIP());
+            html += "</body></html>";
+
+            WebOperationContext.Current.OutgoingResponse.ContentType = "text/html";
+            return new MemoryStream(Encoding.UTF8.GetBytes(html));
+        }
+
+
+        /*******************************************************************************************************************\
+         *                                                                                                                 *
+        \*******************************************************************************************************************/
 
         public Stream GetPage()
         {
-            string h = "<html><body>";
+            string html = "<html><body>";
 
-            h += "<h3>Hello Daniil</h3>";
-            h += "</body></html";
+            html += "<h3>Hello Daniil</h3>";
+            html += "</body></html>";
 
             WebOperationContext.Current.OutgoingResponse.ContentType = "text/html";
-            byte[] htmlBytes = Encoding.UTF8.GetBytes(h);
-            return new MemoryStream(htmlBytes);
+            return new MemoryStream(Encoding.UTF8.GetBytes(html));
         }
 
-        /******************************************************************************************\
-        *                                                                                          * 
-        \******************************************************************************************/
 
+        /*******************************************************************************************************************\
+         *                                                                                                                 *
+        \*******************************************************************************************************************/
+
+        // This should be moved to VIEW namespace
         public static List<string> GetWebMethods(WebServiceHost host, Type intf)
         {
             List<string> methods = new List<string>();
@@ -76,18 +121,22 @@ namespace ConsoleApp3
             return methods;
         }
 
-        /************************************************************************************************\               
-        *                                                                                                *   
-        \************************************************************************************************/
+
+        /*******************************************************************************************************************\
+         *                                                                                                                 *
+        \*******************************************************************************************************************/
+
         public Stream Info()
         {
+            string html = View.DataPresenter.ListToHTML(GetWebMethods(Program._HOST, typeof(iWCFDaniil)));
+
             WebOperationContext.Current.OutgoingResponse.ContentType = "text/html";
-            return new MemoryStream(Encoding.UTF8.GetBytes(DataPresenter.ListToHTML( GetWebMethods(Program._HOST, typeof(iWCFDaniil) ) ) ) );
+            return new MemoryStream(Encoding.UTF8.GetBytes(html));
         }
 
-        
+
+        /*******************************************************************************************************************\
+         *                                                                                                                 *
+        \*******************************************************************************************************************/
     }
 }
-/******************************************************************************************\
-*                                                                                          *                                                                                                                                                                                                                      *
-\******************************************************************************************/
