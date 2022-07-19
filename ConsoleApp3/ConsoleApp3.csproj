@@ -84,6 +84,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Gapp\GenPurposeCode.cs" />
+    <Compile Include="View\DataGetter.cs" />
     <Compile Include="View\DataPresenter.cs" />
     <Compile Include="oWCFDaniil.cs" />
     <Compile Include="Main.cs" />

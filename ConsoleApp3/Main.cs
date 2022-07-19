@@ -1,12 +1,11 @@
 ﻿// DZ220714 - wcfDaniil
 //
-// Version : 1.1
+// Version : 1.3
 // Release : July 14/2022
 //                
 // Re : wcfDaniil REST API                                                                     
 //
-// Update : DZ220717 - Reorganised and cleaned up code
-// Update : GS220717 - standardized code and addded ShowClientIp method
+// Update : DZ220718 - Reorganised and cleaned up code
 
 
 
@@ -14,6 +13,8 @@ using System;
 using System.Collections.Generic;
 using System.ServiceModel;
 using System.ServiceModel.Web;
+
+using Gapp;
 
 
 namespace ConsoleApp3
@@ -36,7 +37,7 @@ namespace ConsoleApp3
    
             Console.WriteLine("Begin");
 
-            Console.WriteLine(oWCFDaniil.get_the_ip());
+            Console.WriteLine(GPC.get_the_ip());
 
             Uri httpUrl = new Uri("http://localhost:80/");
 
@@ -45,7 +46,7 @@ namespace ConsoleApp3
             var binding = new WebHttpBinding(); 
             _HOST.AddServiceEndpoint(typeof(iWCFDaniil), binding, "wcfDaniil");
 
-           
+
             _HOST.Open();
 
             Console.WriteLine("Commence with the testing!");
