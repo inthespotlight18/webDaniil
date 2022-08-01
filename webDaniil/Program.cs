@@ -6,6 +6,7 @@
 // Re : wcfDaniil REST API                                                                     
 //
 // Update : DZ220718 - Reorganised and cleaned up code
+// Update : DZ220801 - Fixed console problem
 
 using System;
 using System.Reflection;
@@ -64,10 +65,7 @@ namespace webDaniil
         /*******************************************************************************************************************\
          *                    Method reads a excel spreadsheet file and returns dataset                                     *
         \*******************************************************************************************************************/
-
-
-
-
     }
+
 }
 
