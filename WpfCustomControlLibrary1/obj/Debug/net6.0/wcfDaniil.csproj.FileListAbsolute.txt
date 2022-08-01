@@ -1,5 +1,0 @@
-C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\obj\Debug\net6.0\wcfDaniil.csproj.AssemblyReference.cache
-C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\obj\Debug\net6.0\wcfDaniil.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\obj\Debug\net6.0\wcfDaniil.AssemblyInfoInputs.cache
-C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\obj\Debug\net6.0\wcfDaniil.AssemblyInfo.cs
-C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\obj\Debug\net6.0\wcfDaniil.csproj.CoreCompileInputs.cache
