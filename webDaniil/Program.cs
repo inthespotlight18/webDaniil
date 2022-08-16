@@ -9,62 +9,61 @@
 // Update : DZ220801 - Fixed console problem
 
 using System;
-using System.Reflection;
-using System.Threading;
-using System.Reflection.Emit;
-
-using System.Collections.Generic;
-using System.ServiceModel;
-using System.ServiceModel.Web;
-
-using wcfDaniil;
-
+using System.Net;
+using System.ServiceProcess;
+using System.Diagnostics;
 
 namespace webDaniil
 {
     class Program
     {
-        /*******************************************************************************************************************\
-         *                                                                                                                 *
-        \*******************************************************************************************************************/
-
-        public static WebServiceHost _HOST { get; set; }
-
 
         /*******************************************************************************************************************\
          *                                                                                                                 *
         \*******************************************************************************************************************/
 
-        static void Main(string[] args)
+
+        public static string SERVICE_NAME = "DZ_test";
+
+        static void Main()
         {
-            Console.WriteLine(GAPP.GapLib.AssemblyVersion());
 
-            Console.WriteLine("Begin");
-          //  Console.WriteLine(GPC.get_the_ip());
-
-            Uri httpUrl = new Uri("http://localhost:80/");
-
-            _HOST = new WebServiceHost(typeof(wcfDaniil.oWCFDaniil), httpUrl);
-
-            var binding = new WebHttpBinding();
-            _HOST.AddServiceEndpoint(typeof(wcfDaniil.iWCFDaniil), binding, "wcfDaniil");
-
-            _HOST.Open();
-
-            Console.WriteLine("Commence with the testing!");
-            Console.ReadLine();
-
-            _HOST.Close();
-
-
-            Console.WriteLine("End");
-            Console.ReadLine();
+            try
+            {
+                // GS2110125 : ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                ServicePointManager.SecurityProtocol = (SecurityProtocolType)(0xc0 | 0x300 | 0xc00);
+                if (GAPP.Gap.Test)
+                {
+                    // Console.WriteLine("Public ... {0}\n", GAPP.GapLib.GetPUBurl());
+                    Console.WriteLine("\n");
+                    Console.ReadLine();
+                }
+                else
+                {
+                    ServiceBase[] ServicesToRun;
+                    ServicesToRun = new ServiceBase[]
+                    {
+                         new Service1()
+                    };
+                    ServiceBase.Run(ServicesToRun);
+                    Console.ReadKey();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Trace.TraceWarning(ex.Message);
+                if (GAPP.Gap.Test) Console.ReadKey();
+            }
 
         }
 
+
         /*******************************************************************************************************************\
-         *                    Method reads a excel spreadsheet file and returns dataset                                     *
+         *                                                                                                                 *
         \*******************************************************************************************************************/
+
+
     }
 
 }

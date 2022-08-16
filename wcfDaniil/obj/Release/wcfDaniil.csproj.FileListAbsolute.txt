@@ -1,0 +1,6 @@
+C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\bin\Release\wcfDaniil.dll
+C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\bin\Release\wcfDaniil.pdb
+C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\obj\Release\wcfDaniil.csproj.AssemblyReference.cache
+C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\obj\Release\wcfDaniil.csproj.CoreCompileInputs.cache
+C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\obj\Release\wcfDaniil.dll
+C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\obj\Release\wcfDaniil.pdb
