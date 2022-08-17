@@ -1,13 +1,12 @@
-﻿// DZ220714 - wcfDaniil
+﻿// DZ220718 - wcfDaniil
 //
-// Version : 1.3
-// Release : July 14/2022
+// Version : 1.4
+// Release : August 17/2022
 //                
 // Re : wcfDaniil REST API                                                                     
 //
 // Update : DZ220718 - Reorganised and cleaned up code
-// Update : DZ220801 - Fixed console problem
-
+// Update : DZ220817 - Cleaned up references
 using System;
 using System.Net;
 using System.ServiceProcess;
