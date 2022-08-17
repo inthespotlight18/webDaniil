@@ -1,10 +1,8 @@
 ﻿using System;
-using System.ServiceProcess;
 using System.IO;
-using System.Threading;
-using System.Configuration;
-using System.ServiceModel.Web;
 using System.ServiceModel;
+using System.ServiceModel.Web;
+using System.ServiceProcess;
 
 namespace webDaniil
 {
@@ -36,7 +34,6 @@ namespace webDaniil
 
             _HOST.Close();
         }
-
 
     }
 }

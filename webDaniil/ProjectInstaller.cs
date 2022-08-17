@@ -1,6 +1,4 @@
-﻿using System.Text;
-using System.ServiceProcess;
-using System.Configuration;
+﻿using System.ServiceProcess;
 using System.Configuration.Install;
 
 using System.ComponentModel;
