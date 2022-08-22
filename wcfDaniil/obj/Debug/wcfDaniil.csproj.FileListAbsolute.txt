@@ -4,3 +4,10 @@ C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\obj\Debug\wcfDaniil.cspr
 C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\obj\Debug\wcfDaniil.csproj.CoreCompileInputs.cache
 C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\obj\Debug\wcfDaniil.dll
 C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\obj\Debug\wcfDaniil.pdb
+C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\bin\Debug\System.Web.Http.dll
+C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\bin\Debug\System.Web.Http.xml
+C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\obj\Debug\wcfDaniil.csproj.CopyComplete

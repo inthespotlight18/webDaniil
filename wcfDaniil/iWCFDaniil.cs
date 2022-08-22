@@ -25,7 +25,23 @@ namespace wcfDaniil
         int GetInfo();
 
         [WebGet]
-        Stream GetPage();
+        Stream GetPage(); 
+
+        [WebGet]
+        DataSet dsExcelSheetGet();
+
+        [WebGet]
+        string AssemblyVersion();
+
+        /*******************************************************************************************************************\
+         *                                                                                                                 *
+        \*******************************************************************************************************************
+
+        [WebGet]
+        string CallMS();
+
+        [WebGet]
+        string Trap(int n);
 
         [WebGet]
         DataSet SampleDS();
@@ -33,17 +49,10 @@ namespace wcfDaniil
         [WebInvoke(Method = "POST")]
         int PostTest(DataSet ds);
 
-        [WebGet]
-        string Trap(int n);
-
-        [WebGet]
-        string CallMS();
-
-        [WebGet]
-        DataSet dsExcelSheetGet();
-
         /*******************************************************************************************************************\
          *                                                                                                                 *
         \*******************************************************************************************************************/
+
+
     }
 }

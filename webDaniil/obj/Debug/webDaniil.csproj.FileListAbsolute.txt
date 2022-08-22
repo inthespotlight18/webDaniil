@@ -1,0 +1,11 @@
+C:\Users\Daniil Zlenko\Documents\C#\webDaniil\webDaniil\bin\Debug\webDaniil.exe.config
+C:\Users\Daniil Zlenko\Documents\C#\webDaniil\webDaniil\bin\Debug\webDaniil.exe
+C:\Users\Daniil Zlenko\Documents\C#\webDaniil\webDaniil\bin\Debug\webDaniil.pdb
+C:\Users\Daniil Zlenko\Documents\C#\webDaniil\webDaniil\bin\Debug\wcfDaniil.dll
+C:\Users\Daniil Zlenko\Documents\C#\webDaniil\webDaniil\bin\Debug\wcfDaniil.pdb
+C:\Users\Daniil Zlenko\Documents\C#\webDaniil\webDaniil\obj\Debug\webDaniil.csproj.AssemblyReference.cache
+C:\Users\Daniil Zlenko\Documents\C#\webDaniil\webDaniil\obj\Debug\webDaniil.csproj.SuggestedBindingRedirects.cache
+C:\Users\Daniil Zlenko\Documents\C#\webDaniil\webDaniil\obj\Debug\webDaniil.csproj.CoreCompileInputs.cache
+C:\Users\Daniil Zlenko\Documents\C#\webDaniil\webDaniil\obj\Debug\webDaniil.csproj.CopyComplete
+C:\Users\Daniil Zlenko\Documents\C#\webDaniil\webDaniil\obj\Debug\webDaniil.exe
+C:\Users\Daniil Zlenko\Documents\C#\webDaniil\webDaniil\obj\Debug\webDaniil.pdb
