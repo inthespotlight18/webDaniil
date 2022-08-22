@@ -173,7 +173,7 @@ namespace wcfDaniil
         \*******************************************************************************************************************/
         
 
-        public string AssemblyVersion()
+        public string Version()
         {
             return Gapp.GPC.AssemblyVersion();
         }

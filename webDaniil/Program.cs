@@ -11,7 +11,7 @@
 
     Update : DZ220718 - Reorganised and cleaned up code
     Update : DZ220817 - Cleaned up references
-    Update : DZ220822 - AssemblyVersion() method, comments
+    Update : DZ220822 - Version() method, comments
 
 /*******************************************************************************************************************\
 *                                                                                                                  *

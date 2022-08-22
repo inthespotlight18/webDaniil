@@ -31,7 +31,7 @@ namespace wcfDaniil
         DataSet dsExcelSheetGet();
 
         [WebGet]
-        string AssemblyVersion();
+        string Version();
 
         /*******************************************************************************************************************\
          *                                                                                                                 *
