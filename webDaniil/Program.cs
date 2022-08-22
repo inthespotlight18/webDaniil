@@ -1,17 +1,13 @@
-﻿/*******************************************************************************************************************\
-*                                                                                                                  *
-\*******************************************************************************************************************
+﻿//DZ220718 - wcfDaniil
 
-    DZ220718 - wcfDaniil
-
-    Version : 1.5
-    Release : August 22/2022
+//Version : 1.5
+//Release : August 22/2022
                 
-    Re : wcfDaniil REST API / Windows Service                                                                     
+//Re : wcfDaniil REST API / Windows Service                                                                     
 
-    Update : DZ220718 - Reorganised and cleaned up code
-    Update : DZ220817 - Cleaned up references
-    Update : DZ220822 - Version() method, comments
+//Update : DZ220718 - Reorganised and cleaned up code
+//Update : DZ220817 - Cleaned up references
+//Update : DZ220822 - Version() method, comments
 
 /*******************************************************************************************************************\
 *                                                                                                                  *
