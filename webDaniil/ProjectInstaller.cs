@@ -50,11 +50,13 @@ namespace webDaniil
 
             service = new ServiceInstaller();
             service.ServiceName = Program.SERVICE_NAME;
-            service.Description = string.Format("DZ WindowsServiceCS (V{0} DZ220814) by GarNet RC 604-512-6200", "[V1.0]");
+            service.Description = string.Format("DZ webDaniil (V{0} DZ220825) by GarNet RC 604-512-6200", "[V1.0]");
 
             Installers.Add(process);
             Installers.Add(service);
         }
+
+
 
     }
 

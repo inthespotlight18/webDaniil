@@ -5,7 +5,7 @@ using System.IO;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Web;
-
+using View;
 
 
 namespace wcfDaniil
@@ -16,6 +16,7 @@ namespace wcfDaniil
         /*******************************************************************************************************************\
          *                                                                                                                 *
         \*******************************************************************************************************************/
+
 
         public int GetInfo()
         {
@@ -72,8 +73,12 @@ namespace wcfDaniil
 
         public Stream Info()
         {
-            //string html = View.DataPresenter.ListToHTML(DataGetter.GetWebMethods(Program._HOST, typeof(iWCFDaniil)));
-            string html = "info";
+            Uri httpUrl = new Uri("http://localhost:80/");
+
+            var _HOST = new WebServiceHost(typeof(wcfDaniil.oWCFDaniil), httpUrl);
+
+            string html = View.DataPresenter.ListToHTML(DataGetter.GetWebMethods(_HOST, typeof(iWCFDaniil)));
+            //string html = "info";
 
             WebOperationContext.Current.OutgoingResponse.ContentType = "text/html";
             return new MemoryStream(Encoding.UTF8.GetBytes(html));
@@ -175,7 +180,7 @@ namespace wcfDaniil
 
         public string Version()
         {
-            return Gapp.GPC.AssemblyVersion();
+            return Gapp.Gap.AssemblyVersion();
         }
 
         /*******************************************************************************************************************\

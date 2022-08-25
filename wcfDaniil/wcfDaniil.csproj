@@ -56,7 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Gapp\GenPurposeCode.cs" />
+    <Compile Include="Gapp\GapLib.cs" />
     <Compile Include="iWCFDaniil.cs" />
     <Compile Include="Model\lclExcel.cs" />
     <Compile Include="oWCFDaniil.cs" />

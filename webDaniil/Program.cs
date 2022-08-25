@@ -1,26 +1,28 @@
 ﻿//DZ220718 - wcfDaniil
 
-//Version : 1.5
-//Release : August 22/2022
+//Version : 1.6
+//Release : August 25/2022
                 
 //Re : wcfDaniil REST API / Windows Service                                                                     
 
 //Update : DZ220718 - Reorganised and cleaned up code
 //Update : DZ220817 - Cleaned up references
 //Update : DZ220822 - Version() method, comments
+//Update : DZ220825 - Info() and Version() method fixed, comments
 
 /*******************************************************************************************************************\
 *                                                                                                                  *
 \*******************************************************************************************************************/
-
 
 using System;
 using System.Net;
 using System.ServiceProcess;
 using System.Diagnostics;
 
+
 namespace webDaniil
 {
+
     class Program
     {
 
@@ -28,12 +30,10 @@ namespace webDaniil
          *                                                                                                                 *
         \*******************************************************************************************************************/
 
-
         public static string SERVICE_NAME = "DZ_test";
-
+      
         static void Main()
         {
-
             try
             {
                 // GS2110125 : ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
@@ -66,7 +66,7 @@ namespace webDaniil
 
 
         /*******************************************************************************************************************\
-         *                                                                                                                 *
+         *                                                                                                                  *
         \*******************************************************************************************************************/
 
 
