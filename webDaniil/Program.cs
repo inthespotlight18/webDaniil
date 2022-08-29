@@ -9,6 +9,7 @@
 //Update : DZ220817 - Cleaned up references
 //Update : DZ220822 - Version() method, comments
 //Update : DZ220825 - Info() and Version() method fixed, comments
+//Update : DZ220829 - Rebuilded bin folder, solving github issues
 
 /*******************************************************************************************************************\
 *                                                                                                                  *
