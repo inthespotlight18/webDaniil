@@ -2,7 +2,7 @@
 
 //Version : 1.6
 //Release : August 25/2022
-                
+
 //Re : wcfDaniil REST API / Windows Service                                                                     
 
 //Update : DZ220718 - Reorganised and cleaned up code
@@ -10,6 +10,7 @@
 //Update : DZ220822 - Version() method, comments
 //Update : DZ220825 - Info() and Version() method fixed, comments
 //Update : DZ220829 - Rebuilded bin folder, solving github issues
+//Update : DZ220830 - fixed Info(), style changes, Assembly version
 
 /*******************************************************************************************************************\
 *                                                                                                                  *

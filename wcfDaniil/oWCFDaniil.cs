@@ -73,11 +73,9 @@ namespace wcfDaniil
 
         public Stream Info()
         {
-            Uri httpUrl = new Uri("http://localhost:80/");
+            WebServiceHost Host = (WebServiceHost)OperationContext.Current.Host;
 
-            var _HOST = new WebServiceHost(typeof(wcfDaniil.oWCFDaniil), httpUrl);
-
-            string html = View.DataPresenter.ListToHTML(DataGetter.GetWebMethods(_HOST, typeof(iWCFDaniil)));
+            string html = View.DataPresenter.ListToHTML(DataGetter.GetWebMethods(Host, typeof(wcfDaniil.iWCFDaniil)));
             //string html = "info";
 
             WebOperationContext.Current.OutgoingResponse.ContentType = "text/html";

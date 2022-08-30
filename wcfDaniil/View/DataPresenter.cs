@@ -27,7 +27,7 @@ namespace View
             </script>
             </head>
             
-            <h3>Site Show</h3>
+            <h3>Interface Methods</h3>
                     <meta charset='UTF-8'>
                     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
                     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
