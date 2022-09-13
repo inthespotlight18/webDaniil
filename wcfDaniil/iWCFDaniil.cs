@@ -33,6 +33,14 @@ namespace wcfDaniil
         [WebGet]
         string Version();
 
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json,
+           ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest,
+           UriTemplate = "ValidatePOST")]
+        //UriTemplate = "/ValidatePOST?userName={userName}")]
+
+        // [WebInvoke(Method = "POST", UriTemplate = "/ValidatePOST?userName={userName}")]
+        string ValidatePOST(string userName, string password);
+
         /*******************************************************************************************************************\
          *                                                                                                                 *
         \*******************************************************************************************************************

@@ -12,6 +12,20 @@
 //Update : DZ220829 - Rebuilded bin folder, solving github issues
 //Update : DZ220830 - fixed Info(), style changes, Assembly version
 
+//Update : DZ220912 - Authentication added, works with POSTMAN, to get expected results,
+//     please follow next instructions: 
+//In the POSTMAN, choose POST method, enter http://localhost/wcfDaniil/ValidatePOST,
+//go to the Body (under website url), click raw, and add JSON code similar to the one below:
+
+/*  
+ 
+{
+    "userName" : "Daniil",
+    "password" : "1234"
+}
+
+ */
+
 /*******************************************************************************************************************\
 *                                                                                                                  *
 \*******************************************************************************************************************/

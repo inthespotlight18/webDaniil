@@ -36,7 +36,7 @@ namespace View
             <body>
             ";
 
-            html += "<table id='result' class='display' ><thead><tr>";
+            html += "<table id='result' class='display' style='text-align:left;' ><thead><tr>";
             for (int i = 0; i < l.Count; i++)
             {
                 html += string.Format("<th>{0}</th> ", l[i]);

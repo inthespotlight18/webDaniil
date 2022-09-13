@@ -174,7 +174,23 @@ namespace wcfDaniil
         /*******************************************************************************************************************\
         *                                                                                                                  *
         \*******************************************************************************************************************/
-        
+
+        public string ValidatePOST(string userName, string password)
+        {
+            //Console.WriteLine("ValidatePOST : u[{0}] p[{1}]", userName, password);
+
+            Console.WriteLine("U - " + userName);
+            Console.WriteLine("P - " + password);
+
+            Validation V = new Validation();
+
+            return V.ValidateUserData(userName, password);
+        }
+
+        /*******************************************************************************************************************\
+        *                                                                                                                  *
+        \*******************************************************************************************************************/
+
 
         public string Version()
         {
