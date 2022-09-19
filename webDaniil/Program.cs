@@ -26,7 +26,7 @@
 
   */
  
-//Update: DZ220912 - Info() is method fixed, Assembly version added, testing with postman done
+//Update: DZ220918 - Info() is method fixed, Assembly version added, testing with postman done
 
 
 
