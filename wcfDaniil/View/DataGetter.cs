@@ -19,6 +19,8 @@ namespace View
         {
             List<string> methods = new List<string>();
 
+            methods.Add("Assembly version - " + Gapp.Gap.AssemblyVersion());
+
             foreach (ServiceEndpoint ep in host.Description.Endpoints)
             {
                 methods.Add(ep.ListenUri.ToString());

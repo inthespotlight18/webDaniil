@@ -31,13 +31,14 @@ namespace View
                     <meta charset='UTF-8'>
                     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
                     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-                <title>Database</title>
+                <title>DataTable</title>
             </head>
-            <body>
+            <body>               
             ";
+            html += "<h3>" + l[0] + "</h3>";
 
             html += "<table id='result' class='display' style='text-align:left;' ><thead><tr>";
-            for (int i = 0; i < l.Count; i++)
+            for (int i = 1; i < l.Count; i++)
             {
                 html += string.Format("<th>{0}</th> ", l[i]);
 

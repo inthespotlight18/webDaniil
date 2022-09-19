@@ -1,30 +1,34 @@
 ﻿//DZ220718 - wcfDaniil
 
-//Version : 1.6
-//Release : August 25/2022
+ //Version : 1.6
+ //Release : August 25/2022
 
-//Re : wcfDaniil REST API / Windows Service                                                                     
+ //Re : wcfDaniil REST API / Windows Service                                                                     
 
-//Update : DZ220718 - Reorganised and cleaned up code
-//Update : DZ220817 - Cleaned up references
-//Update : DZ220822 - Version() method, comments
-//Update : DZ220825 - Info() and Version() method fixed, comments
-//Update : DZ220829 - Rebuilded bin folder, solving github issues
-//Update : DZ220830 - fixed Info(), style changes, Assembly version
+ //Update : DZ220718 - Reorganised and cleaned up code
+ //Update : DZ220817 - Cleaned up references
+ //Update : DZ220822 - Version() method, comments
+ //Update : DZ220825 - Info() and Version() method fixed, comments
+ //Update : DZ220829 - Rebuilded bin folder, solving github issues
+ //Update : DZ220830 - fixed Info(), style changes, Assembly version
 
-//Update : DZ220912 - Authentication added, works with POSTMAN, to get expected results,
-//     please follow next instructions: 
-//In the POSTMAN, choose POST method, enter http://localhost/wcfDaniil/ValidatePOST,
-//go to the Body (under website url), click raw, and add JSON code similar to the one below:
+ //Update : DZ220912 - Authentication added, works with POSTMAN, to get expected results,
+ //     please follow next instructions: 
+ //In the POSTMAN, choose POST method, enter http://localhost/wcfDaniil/ValidatePOST,
+ //go to the Body (under website url), click raw, and add JSON code similar to the one below:
 
-/*  
+ /*  
+
+ {
+     "userName" : "Daniil",
+     "password" : "1234"
+ }
+
+  */
  
-{
-    "userName" : "Daniil",
-    "password" : "1234"
-}
+//Update: DZ220912 - Info() is method fixed, Assembly version added, testing with postman done
 
- */
+
 
 /*******************************************************************************************************************\
 *                                                                                                                  *
