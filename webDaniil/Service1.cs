@@ -26,6 +26,7 @@ namespace webDaniil
             _HOST.AddServiceEndpoint(typeof(wcfDaniil.iWCFDaniil), binding, "wcfDaniil");
 
             _HOST.Open();
+            
         }
 
         protected override void OnStop()
