@@ -20,6 +20,7 @@ namespace wcfDaniil
 
         public int GetInfo()
         {
+            Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().Name);
             return 99;
         }
 
@@ -41,6 +42,8 @@ namespace wcfDaniil
 
         public Stream ShowClientIP()
         {
+            Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().Name);
+
             string html = "<html><body>";
 
             html += string.Format("<h3>{0}|{1}</h3>", DateTime.Now, GetClientIP());
@@ -57,6 +60,8 @@ namespace wcfDaniil
 
         public Stream GetPage()
         {
+            Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().Name);
+
             string html = "<html><body>";
 
             html += "<h3>Hello Daniil</h3>";
@@ -157,6 +162,7 @@ namespace wcfDaniil
 
         public DataSet dsExcelSheetGet()
         {
+            Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().Name);
             try
             {
                 DataTable dt = Model.lclExcel.dtExcelSheetGet(@"Book2.xlsx");
@@ -177,6 +183,7 @@ namespace wcfDaniil
 
         public string ValidatePOST(string userName, string password)
         {
+            Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().Name);
             //Console.WriteLine("ValidatePOST : u[{0}] p[{1}]", userName, password);
 
             Console.WriteLine("U - " + userName);
@@ -194,6 +201,7 @@ namespace wcfDaniil
 
         public string Version()
         {
+            Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().Name);
             return Gapp.Gap.AssemblyVersion();
         }
 

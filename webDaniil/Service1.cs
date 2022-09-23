@@ -35,6 +35,10 @@ namespace webDaniil
             _HOST.Close();
         }
 
+        public void OnDebug()
+        { 
+            OnStart(null);
+        }
     }
 }
 
