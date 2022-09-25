@@ -27,7 +27,8 @@
  */
 
 //Update: DZ220918 - Info() is method fixed, Assembly version added, testing with postman done
-//Update: DZ220920 - Setting variable changed, webDaniil.exe now starts the program as well, OnDebug() function added
+//Update: DZ220922 - Setting variable changed, webDaniil.exe now starts the program as well, OnDebug() function added
+//Update: DZ220925 - File version changed, project rebuilt
 
 
 
