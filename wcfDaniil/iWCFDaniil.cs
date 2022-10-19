@@ -31,6 +31,9 @@ namespace wcfDaniil
         DataSet dsExcelSheetGet();
 
         [WebGet]
+        Stream printUsersDictWeb();
+
+        [WebGet]
         string Version();
 
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json,

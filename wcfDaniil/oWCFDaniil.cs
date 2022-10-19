@@ -192,11 +192,27 @@ namespace wcfDaniil
             Validation V = new Validation();
 
             return V.ValidateUserData(userName, password);
+
+
         }
 
         /*******************************************************************************************************************\
         *                                                                                                                  *
         \*******************************************************************************************************************/
+
+        public Stream printUsersDictWeb()
+        {
+            Model.User.printUsersDict();
+
+            string html = View.DataPresenter.DictToHTML(Model.User.AllUsers);
+
+            WebOperationContext.Current.OutgoingResponse.ContentType = "text/html";
+
+            //return new MemoryStream(Encoding.UTF8.GetBytes(DataPresenter.LoginFormsHTML()));
+            return new MemoryStream(Encoding.UTF8.GetBytes(html));
+
+
+        }
 
 
         public string Version()

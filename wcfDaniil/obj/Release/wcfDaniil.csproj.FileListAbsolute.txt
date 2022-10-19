@@ -1,13 +1,13 @@
 C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\bin\Release\wcfDaniil.dll
 C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\bin\Release\wcfDaniil.pdb
-C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\obj\Release\wcfDaniil.csproj.AssemblyReference.cache
-C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\obj\Release\wcfDaniil.csproj.CoreCompileInputs.cache
-C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\obj\Release\wcfDaniil.dll
-C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\obj\Release\wcfDaniil.pdb
 C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\bin\Release\Newtonsoft.Json.dll
 C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\bin\Release\System.Net.Http.Formatting.dll
 C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\bin\Release\System.Web.Http.dll
 C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\bin\Release\Newtonsoft.Json.xml
 C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\bin\Release\System.Net.Http.Formatting.xml
 C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\bin\Release\System.Web.Http.xml
+C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\obj\Release\wcfDaniil.csproj.AssemblyReference.cache
+C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\obj\Release\wcfDaniil.csproj.CoreCompileInputs.cache
 C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\obj\Release\wcfDaniil.csproj.CopyComplete
+C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\obj\Release\wcfDaniil.dll
+C:\Users\Daniil Zlenko\Documents\C#\webDaniil\wcfDaniil\obj\Release\wcfDaniil.pdb

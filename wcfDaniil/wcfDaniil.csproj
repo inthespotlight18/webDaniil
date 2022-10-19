@@ -56,10 +56,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authentication\LoginFormHtml.cs" />
     <Compile Include="Authentication\Validation.cs" />
     <Compile Include="Gapp\GapLib.cs" />
     <Compile Include="iWCFDaniil.cs" />
     <Compile Include="Model\lclExcel.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="oWCFDaniil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\DataGetter.cs" />

@@ -29,6 +29,7 @@
 //Update: DZ220918 - Info() is method fixed, Assembly version added, testing with postman done
 //Update: DZ220922 - Setting variable changed, webDaniil.exe now starts the program as well, OnDebug() function added
 //Update: DZ220925 - File version changed, project rebuilt
+//Update: DZ220929 - User.cs added to the model; now we can create users with parameters, and add them all to the dictionary
 
 
 
@@ -40,7 +41,8 @@ using System;
 using System.Net;
 using System.ServiceProcess;
 using System.Diagnostics;
-
+using Model;
+using System.Collections.Generic;
 
 namespace webDaniil
 {
@@ -56,20 +58,48 @@ namespace webDaniil
       
         static void Main()
         {
-            
+
             try
             {
-                // GS2110125 : ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 ServicePointManager.SecurityProtocol = (SecurityProtocolType)(0xc0 | 0x300 | 0xc00);
                 if (GAPP.Gap.Test)
                 {
-                    Console.WriteLine(Program.SERVICE_NAME);
+                    //Creating users for testing
+                  
+                    List<User> users = new List<User>();
+
+                    List<string> userNames = new List<string> ();
+                    userNames.Add("Daniil");
+                    userNames.Add("Michael");
+                    userNames.Add("Gordon");
+
+
+                    for (var i = 0; i < userNames.Count; i++)
+                    {
+                        Guid key = Guid.NewGuid();
+
+                        //User u = new Model.User("default", "default", key);
+                        // users.Add(u);
+                        User.UserAdd(userNames[i]);
+
+                        //usersDict() prints object name and its type 
+                        if (i + 1 == userNames.Count)
+                        {
+                            User.printUsersDict();
+                        }
+                       
+                    }
+
+                    /*******************************************************************************************************************\
+                     *                                                                                                                 *
+                    \*******************************************************************************************************************/
+
+                    Console.WriteLine(SERVICE_NAME);
                     Console.WriteLine(GAPP.Gap.AssemblyVersion());
 
                     Service1 s1 = new Service1();
 
                     s1.OnDebug();
-                    // Console.WriteLine("Public ... {0}\n", GAPP.GapLib.GetPUBurl());
                     
                     Console.WriteLine("\n");
                     Console.ReadLine();
