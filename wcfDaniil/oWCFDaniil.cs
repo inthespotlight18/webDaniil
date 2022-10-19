@@ -215,6 +215,12 @@ namespace wcfDaniil
         }
 
 
+        public void UserAdd(string userName)
+        {
+            Model.User.UserAdd(userName);
+        }
+
+
         public string Version()
         {
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().Name);

@@ -44,6 +44,9 @@ namespace wcfDaniil
         // [WebInvoke(Method = "POST", UriTemplate = "/ValidatePOST?userName={userName}")]
         string ValidatePOST(string userName, string password);
 
+        [WebGet]
+        void UserAdd(string userName);
+
         /*******************************************************************************************************************\
          *                                                                                                                 *
         \*******************************************************************************************************************
