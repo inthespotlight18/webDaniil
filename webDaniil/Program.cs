@@ -30,6 +30,7 @@
 //Update: DZ220922 - Setting variable changed, webDaniil.exe now starts the program as well, OnDebug() function added
 //Update: DZ220925 - File version changed, project rebuilt
 //Update: DZ220929 - User.cs added to the model; now we can create users with parameters, and add them all to the dictionary
+//Update: DZ221211 - Authentication finished, DLL remanaged, project was cleaned
 
 
 
@@ -55,6 +56,10 @@ namespace webDaniil
         \*******************************************************************************************************************/
 
         public static string SERVICE_NAME = "DZ_test";
+
+        
+        public static Guid SERVICE_ID = Guid.NewGuid();
+
       
         static void Main()
         {
@@ -64,35 +69,9 @@ namespace webDaniil
                 ServicePointManager.SecurityProtocol = (SecurityProtocolType)(0xc0 | 0x300 | 0xc00);
                 if (GAPP.Gap.Test)
                 {
-                    //Creating users for testing
-                  
-                    List<User> users = new List<User>();
+                    testRingSMS testRingSMS = new testRingSMS();
+                    testRingSMS.test_rcsms();
 
-                    List<string> userNames = new List<string> ();
-                    userNames.Add("Daniil");
-                    userNames.Add("Michael");
-                    userNames.Add("Gordon");
-
-
-                    for (var i = 0; i < userNames.Count; i++)
-                    {
-                        Guid key = Guid.NewGuid();
-
-                        //User u = new Model.User("default", "default", key);
-                        // users.Add(u);
-                        User.UserAdd(userNames[i]);
-
-                        //usersDict() prints object name and its type 
-                        if (i + 1 == userNames.Count)
-                        {
-                            User.printUsersDict();
-                        }
-                       
-                    }
-
-                    /*******************************************************************************************************************\
-                     *                                                                                                                 *
-                    \*******************************************************************************************************************/
 
                     Console.WriteLine(SERVICE_NAME);
                     Console.WriteLine(GAPP.Gap.AssemblyVersion());

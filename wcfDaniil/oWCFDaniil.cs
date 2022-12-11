@@ -181,18 +181,37 @@ namespace wcfDaniil
         *                                                                                                                  *
         \*******************************************************************************************************************/
 
-        public string ValidatePOST(string userName, string password)
+        public string ValidatePOST(string userName, string password)//get token (put it as a parameter)
         {
+            string access = "";
+
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().Name);
-            //Console.WriteLine("ValidatePOST : u[{0}] p[{1}]", userName, password);
 
             Console.WriteLine("U - " + userName);
             Console.WriteLine("P - " + password);
 
+
             Validation V = new Validation();
 
-            return V.ValidateUserData(userName, password);
+            //name, ip, password
 
+            //boolean or check string
+            if (V.ValidateUserData(userName, password))
+            {
+                string ip = GetClientIP();
+                Model.User.UserAdd(userName, ip);
+                access = "Access was granted, Welcome!";
+            }
+            if (!V.ValidateUserData(userName, password))
+            {
+                access = "Access was Blocked, try again.";
+            }
+
+
+            // return V.ValidateUserData(userName, password);
+
+            //tell the browser to create cookie, using key later in security, 
+            return "";
 
         }
 
@@ -217,7 +236,8 @@ namespace wcfDaniil
 
         public void UserAdd(string userName)
         {
-            Model.User.UserAdd(userName);
+            string ip = GetClientIP();
+            Model.User.UserAdd(userName, ip);
         }
 
 
@@ -225,6 +245,12 @@ namespace wcfDaniil
         {
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().Name);
             return Gapp.Gap.AssemblyVersion();
+        }
+
+        public void SendSMS()
+        {
+            //Model.testRingSMS RC = new Model.testRingSMS();
+            Model.testRingSMS.test_rcsms();
         }
 
         /*******************************************************************************************************************\
