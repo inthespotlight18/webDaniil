@@ -17,20 +17,26 @@
 //In the POSTMAN, choose POST method, enter http://localhost/wcfDaniil/ValidatePOST,
 //go to the Body (under website url), click raw, and add JSON code similar to the one below:
 
-/*  
 
-{
-    "userName" : "Daniil",
-    "password" : "1234"
-}
-
- */
 
 //Update: DZ220918 - Info() is method fixed, Assembly version added, testing with postman done
 //Update: DZ220922 - Setting variable changed, webDaniil.exe now starts the program as well, OnDebug() function added
 //Update: DZ220925 - File version changed, project rebuilt
 //Update: DZ220929 - User.cs added to the model; now we can create users with parameters, and add them all to the dictionary
 //Update: DZ221211 - Authentication finished, DLL remanaged, project was cleaned
+
+//Update: DZ230110 - Converted AllUsers Dictionary in the DataTables, created public method showing the table - 
+//changed Dict accesibillity, Dt->HTML code added
+
+/* Instructions to test last update.
+ * add few users using UsersAdd(userName) method. | http://localhost/wcfDaniil/UserAdd?userName=Test
+ * Then, call printAllUsers(). | http://localhost/wcfDaniil/printAllUsers
+ */
+
+
+
+//Convert Dictionary in the DataTables, create public method showing the table - test it with postman,
+//change class accesibillity, look for the code Dt->HTML
 
 
 
@@ -43,7 +49,7 @@ using System.Net;
 using System.ServiceProcess;
 using System.Diagnostics;
 using Model;
-using System.Collections.Generic;
+//using System.Collections.Generic;
 
 namespace webDaniil
 {

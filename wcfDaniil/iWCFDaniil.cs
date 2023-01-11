@@ -15,6 +15,9 @@ namespace wcfDaniil
 
         [OperationContract]
 
+        //[WebGet]
+        //string ValidateUserData(string userName, string password);
+
         [WebGet]
         Stream Info();
 
@@ -31,10 +34,16 @@ namespace wcfDaniil
         DataSet dsExcelSheetGet();
 
         [WebGet]
+        Stream printAllUsers();
+
+        [WebGet]
         Stream printUsersDictWeb();
 
         [WebGet]
         string Version();
+
+        [WebGet]
+        string UserAdd(string userName);
 
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json,
            ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest,
@@ -44,8 +53,7 @@ namespace wcfDaniil
         // [WebInvoke(Method = "POST", UriTemplate = "/ValidatePOST?userName={userName}")]
         string ValidatePOST(string userName, string password); //search using token key
 
-        [WebGet]
-        void UserAdd(string userName);
+        
 
         /*******************************************************************************************************************\
          *                                                                                                                 *

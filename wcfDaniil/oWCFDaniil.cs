@@ -6,7 +6,9 @@ using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Web;
 using View;
-
+using Model;
+using System.Reflection;
+using System.Collections.Generic;
 
 namespace wcfDaniil
 {
@@ -17,6 +19,8 @@ namespace wcfDaniil
          *                                                                                                                 *
         \*******************************************************************************************************************/
 
+        public Validation V = new Validation();
+        
 
         public int GetInfo()
         {
@@ -196,13 +200,13 @@ namespace wcfDaniil
             //name, ip, password
 
             //boolean or check string
-            if (V.ValidateUserData(userName, password))
+            if (V.ValidateUserData(userName, password).status == "Admin")
             {
                 string ip = GetClientIP();
                 Model.User.UserAdd(userName, ip);
                 access = "Access was granted, Welcome!";
             }
-            if (!V.ValidateUserData(userName, password))
+            if (V.ValidateUserData(userName, password).status == "User")
             {
                 access = "Access was Blocked, try again.";
             }
@@ -211,7 +215,7 @@ namespace wcfDaniil
             // return V.ValidateUserData(userName, password);
 
             //tell the browser to create cookie, using key later in security, 
-            return "";
+            return access;
 
         }
 
@@ -222,11 +226,8 @@ namespace wcfDaniil
         public Stream printUsersDictWeb()
         {
             Model.User.printUsersDict();
-
-            string html = View.DataPresenter.DictToHTML(Model.User.AllUsers);
-
+            string html = View.DataPresenter.DictToHTML(Model.User.GetAllUsers());
             WebOperationContext.Current.OutgoingResponse.ContentType = "text/html";
-
             //return new MemoryStream(Encoding.UTF8.GetBytes(DataPresenter.LoginFormsHTML()));
             return new MemoryStream(Encoding.UTF8.GetBytes(html));
 
@@ -234,17 +235,110 @@ namespace wcfDaniil
         }
 
 
-        public void UserAdd(string userName)
+        public Stream printAllUsers()
         {
-            string ip = GetClientIP();
-            Model.User.UserAdd(userName, ip);
+            DataTable dt = new DataTable("User");
+
+            dt.Columns.Add("UserName");
+            //dt.Columns.Add("id");
+            dt.Columns.Add("Date");
+            dt.Columns.Add("Guid");
+            dt.Columns.Add("Status");
+
+
+            //dt.Columns.Add("Authentication");
+
+            //dt.Columns.Add("stamp", typeof(DateTime));
+
+            var dic = User.GetAllUsers();
+
+            foreach (KeyValuePair<Guid, User> d in dic)
+            {
+                dt.Rows.Add(d.Value.name, d.Value.date, d.Value.guid.ToString(), d.Value.status);
+                //    Console.WriteLine("FOREACH ALIVE - " + d.Value.name);
+            }
+
+            string html = View.DataPresenter.DTtoHTML(dt);
+            WebOperationContext.Current.OutgoingResponse.ContentType = "text/html";
+            //return new MemoryStream(Encoding.UTF8.GetBytes(DataPresenter.LoginFormsHTML()));
+            return new MemoryStream(Encoding.UTF8.GetBytes(html));
+
+
+        }
+       
+        public string UserAdd(string userName)
+        {
+
+            //string ip = GetClientIP();
+            string status = "User";
+            var key = User.UserAdd(userName, status);
+            Console.WriteLine($"{key} {status}");
+            var U = User.GetUser(key);
+
+
+            foreach (var prop in U.GetType().GetProperties())
+            {
+                Console.WriteLine("{0}={1}", prop.Name, prop.GetValue(U, null) + "$%$%$%$%");
+            }
+
+            //return str.Remove(str.Length - 1) + "}";
+
+
+            /*******************************************************************************************************************\
+             *                                                                                                                 *
+            \*******************************************************************************************************************/
+
+
+           
+
+
+            ///* 
+            // *
+            // */
+            //ShowConsoleOutput(dt);
+
+
+
+            string html = View.DataPresenter.CommonPageHTML();
+
+            Console.WriteLine("UserAdd() works");
+
+            return "UserAdd() is working";
+
         }
 
 
+        static void ShowConsoleOutput(DataTable dt)
+        {
+
+            foreach (DataColumn col in dt.Columns)
+                Console.Write("{0} ", col.ColumnName);
+
+
+            foreach (DataRow row in dt.Rows)
+            {
+                Console.WriteLine();
+                foreach (DataColumn col in dt.Columns)
+                    Console.Write("{0} ", row[col.ColumnName]);
+            }
+            Console.WriteLine();
+
+        }
+
+        //#$%^&*
         public string Version()
         {
-            Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().Name);
-            return Gapp.Gap.AssemblyVersion();
+            //e.g. - you have to take Guid from User's session data
+            Guid key = Guid.NewGuid();
+            if (User.GetUser(key).status == "Admin")
+            {
+                //Execute function
+                Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().Name);
+                return Gapp.Gap.AssemblyVersion();
+            }
+
+
+            return "Access denied";
         }
 
         public void SendSMS()
@@ -252,6 +346,9 @@ namespace wcfDaniil
             //Model.testRingSMS RC = new Model.testRingSMS();
             Model.testRingSMS.test_rcsms();
         }
+
+
+      
 
         /*******************************************************************************************************************\
         *                                                                                                                  *
