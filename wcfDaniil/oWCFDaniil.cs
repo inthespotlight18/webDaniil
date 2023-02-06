@@ -7,7 +7,6 @@ using System.ServiceModel.Channels;
 using System.ServiceModel.Web;
 using View;
 using Model;
-using System.Reflection;
 using System.Collections.Generic;
 
 namespace wcfDaniil
@@ -18,6 +17,8 @@ namespace wcfDaniil
         /*******************************************************************************************************************\
          *                                                                                                                 *
         \*******************************************************************************************************************/
+
+        private static Guid key;
 
         public Validation V = new Validation();
         
@@ -92,6 +93,221 @@ namespace wcfDaniil
         }
 
 
+        public WebServiceHost GetHost() 
+        {
+            WebServiceHost Host = (WebServiceHost)OperationContext.Current.Host;
+            return Host;
+        }
+
+
+        /*******************************************************************************************************************\
+         *                                                                                                                  *
+        \*******************************************************************************************************************/
+
+
+        public DataSet dsExcelSheetGet()
+        {
+            Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().Name);
+            try
+            {
+                DataTable dt = Model.lclExcel.dtExcelSheetGet(@"Book2.xlsx");
+                DataSet ds = new DataSet(String.Format("{0}_{1}", "dsExcelSheetGet", DateTime.Now));
+                ds.Tables.Add(dt.Copy());
+                return ds;
+            }
+            catch (Exception ex)
+            {
+                new XRAY.clientXRAY().Error(System.Reflection.MethodBase.GetCurrentMethod(), ex.Source, ex);
+                return new DataSet(ex.Message);
+            }
+        }
+
+        /*******************************************************************************************************************\
+        *                                                                                                                  *
+        \*******************************************************************************************************************/
+
+        public string ValidatePOST(string userName, string password)
+        {
+            string access = "";
+
+            Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().Name);
+
+            Console.WriteLine("U - " + userName);
+            Console.WriteLine("P - " + password);
+
+
+            Validation V = new Validation();
+
+            //name, ip, password
+
+            //boolean or check string
+
+            //if (V.ValidateUserData(userName, password).status == "Admin")
+            //{
+            //    string ip = GetClientIP();
+            //    Model.User.UserAdd(userName, ip);
+            //    access = "Access was granted, Welcome!";
+            //}
+            //if (V.ValidateUserData(userName, password).status == "User")
+            //{
+            //    access = "Access was Blocked, try again.";
+            //}
+
+
+
+
+
+            // return V.ValidateUserData(userName, password);
+
+            //tell the browser to create cookie, using key later in security, 
+            return access;
+
+        }
+
+        /*******************************************************************************************************************\
+        *                                                                                                                  *
+        \*******************************************************************************************************************/
+
+        public Stream printUsersDictWeb()
+        {
+            Model.User.printUsersDict();
+            string html = View.DataPresenter.DictToHTML(Model.User.GetAllUsers());
+            WebOperationContext.Current.OutgoingResponse.ContentType = "text/html";
+            //return new MemoryStream(Encoding.UTF8.GetBytes(DataPresenter.LoginFormsHTML()));
+            return new MemoryStream(Encoding.UTF8.GetBytes(html));
+
+
+        }
+
+
+        public Stream printAllUsers()
+        {
+            DataTable dt = new DataTable("User");
+
+            dt.Columns.Add("UserName");
+            //dt.Columns.Add("id");
+            dt.Columns.Add("Date");
+            dt.Columns.Add("Guid");
+            dt.Columns.Add("Status");
+
+
+            //dt.Columns.Add("Authentication");
+
+            //dt.Columns.Add("stamp", typeof(DateTime));
+
+            var dic = User.GetAllUsers();
+
+            foreach (KeyValuePair<Guid, User> d in dic)
+            {
+                dt.Rows.Add(d.Value.name, d.Value.date, d.Value.guid.ToString(), d.Value.status);
+                //    Console.WriteLine("FOREACH ALIVE - " + d.Value.name);
+            }
+
+            string html = View.DataPresenter.DTtoHTML(dt);
+            WebOperationContext.Current.OutgoingResponse.ContentType = "text/html";
+            //return new MemoryStream(Encoding.UTF8.GetBytes(DataPresenter.LoginFormsHTML()));
+            return new MemoryStream(Encoding.UTF8.GetBytes(html));
+
+
+        }
+       
+        public string AddUser(string userName, string password)
+        {
+            key = V.ValidateUserData(userName, password);
+
+            return key.ToString();
+
+            ////string ip = GetClientIP();
+            //string status = "User";
+            //var key = User.UserAdd(userName, status);
+            //Console.WriteLine($"{key} {status}");
+            //var U = User.GetUser(key);
+
+
+            //foreach (var prop in U.GetType().GetProperties())
+            //{
+            //    Console.WriteLine("{0}={1}", prop.Name, prop.GetValue(U, null) + "$%$%$%$%");
+            //}
+
+            ////return str.Remove(str.Length - 1) + "}";
+
+
+            ///*******************************************************************************************************************\
+            // *                                                                                                                 *
+            //\*******************************************************************************************************************/
+
+            //string html = View.DataPresenter.CommonPageHTML();
+
+            //Console.WriteLine("UserAdd() works");
+
+            //return "UserAdd() is working";
+
+        }
+
+
+        static void ShowConsoleOutput(DataTable dt)
+        {
+
+            foreach (DataColumn col in dt.Columns)
+                Console.Write("{0} ", col.ColumnName);
+
+
+            foreach (DataRow row in dt.Rows)
+            {
+                Console.WriteLine();
+                foreach (DataColumn col in dt.Columns)
+                    Console.Write("{0} ", row[col.ColumnName]);
+            }
+            Console.WriteLine();
+
+        }
+
+        //STATUS dependent function
+
+        public string Version()
+        {
+            
+            //Login first - admin only allowed to see the version output
+            try
+            {  
+                if (User.GetUser(key).status == "Admin")
+                {
+
+                    //Execute function
+                    Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().Name);
+                    return Gapp.Gap.AssemblyVersion();
+                }
+                Console.WriteLine(User.GetUser(key).status);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());         
+            }
+            return "Access denied. Check if ^key^ value was defined. Exception is in console.";
+
+        }
+
+
+
+        public void SendSMS()
+        {
+            //Model.testRingSMS RC = new Model.testRingSMS();
+            Model.testRingSMS.test_rcsms();
+        }
+
+
+        public Stream Login()
+        {
+            string html = View.DataPresenter.LoginFormsHTML();
+            WebOperationContext.Current.OutgoingResponse.ContentType = "text/html";
+            //return new MemoryStream(Encoding.UTF8.GetBytes(DataPresenter.LoginFormsHTML()));
+            return new MemoryStream(Encoding.UTF8.GetBytes(html));
+        }
+
+    }
+}
+
+
         /*******************************************************************************************************************\
          *                                                                                                                 *
         \*******************************************************************************************************************
@@ -158,200 +374,4 @@ namespace wcfDaniil
             return "nothing";
         }
 
-
-        /*******************************************************************************************************************\
-         *                                                                                                                  *
-        \*******************************************************************************************************************/
-
-
-        public DataSet dsExcelSheetGet()
-        {
-            Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().Name);
-            try
-            {
-                DataTable dt = Model.lclExcel.dtExcelSheetGet(@"Book2.xlsx");
-                DataSet ds = new DataSet(String.Format("{0}_{1}", "dsExcelSheetGet", DateTime.Now));
-                ds.Tables.Add(dt.Copy());
-                return ds;
-            }
-            catch (Exception ex)
-            {
-                new XRAY.clientXRAY().Error(System.Reflection.MethodBase.GetCurrentMethod(), ex.Source, ex);
-                return new DataSet(ex.Message);
-            }
-        }
-
-        /*******************************************************************************************************************\
-        *                                                                                                                  *
-        \*******************************************************************************************************************/
-
-        public string ValidatePOST(string userName, string password)//get token (put it as a parameter)
-        {
-            string access = "";
-
-            Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().Name);
-
-            Console.WriteLine("U - " + userName);
-            Console.WriteLine("P - " + password);
-
-
-            Validation V = new Validation();
-
-            //name, ip, password
-
-            //boolean or check string
-            if (V.ValidateUserData(userName, password).status == "Admin")
-            {
-                string ip = GetClientIP();
-                Model.User.UserAdd(userName, ip);
-                access = "Access was granted, Welcome!";
-            }
-            if (V.ValidateUserData(userName, password).status == "User")
-            {
-                access = "Access was Blocked, try again.";
-            }
-
-
-            // return V.ValidateUserData(userName, password);
-
-            //tell the browser to create cookie, using key later in security, 
-            return access;
-
-        }
-
-        /*******************************************************************************************************************\
-        *                                                                                                                  *
-        \*******************************************************************************************************************/
-
-        public Stream printUsersDictWeb()
-        {
-            Model.User.printUsersDict();
-            string html = View.DataPresenter.DictToHTML(Model.User.GetAllUsers());
-            WebOperationContext.Current.OutgoingResponse.ContentType = "text/html";
-            //return new MemoryStream(Encoding.UTF8.GetBytes(DataPresenter.LoginFormsHTML()));
-            return new MemoryStream(Encoding.UTF8.GetBytes(html));
-
-
-        }
-
-
-        public Stream printAllUsers()
-        {
-            DataTable dt = new DataTable("User");
-
-            dt.Columns.Add("UserName");
-            //dt.Columns.Add("id");
-            dt.Columns.Add("Date");
-            dt.Columns.Add("Guid");
-            dt.Columns.Add("Status");
-
-
-            //dt.Columns.Add("Authentication");
-
-            //dt.Columns.Add("stamp", typeof(DateTime));
-
-            var dic = User.GetAllUsers();
-
-            foreach (KeyValuePair<Guid, User> d in dic)
-            {
-                dt.Rows.Add(d.Value.name, d.Value.date, d.Value.guid.ToString(), d.Value.status);
-                //    Console.WriteLine("FOREACH ALIVE - " + d.Value.name);
-            }
-
-            string html = View.DataPresenter.DTtoHTML(dt);
-            WebOperationContext.Current.OutgoingResponse.ContentType = "text/html";
-            //return new MemoryStream(Encoding.UTF8.GetBytes(DataPresenter.LoginFormsHTML()));
-            return new MemoryStream(Encoding.UTF8.GetBytes(html));
-
-
-        }
-       
-        public string UserAdd(string userName)
-        {
-
-            //string ip = GetClientIP();
-            string status = "User";
-            var key = User.UserAdd(userName, status);
-            Console.WriteLine($"{key} {status}");
-            var U = User.GetUser(key);
-
-
-            foreach (var prop in U.GetType().GetProperties())
-            {
-                Console.WriteLine("{0}={1}", prop.Name, prop.GetValue(U, null) + "$%$%$%$%");
-            }
-
-            //return str.Remove(str.Length - 1) + "}";
-
-
-            /*******************************************************************************************************************\
-             *                                                                                                                 *
-            \*******************************************************************************************************************/
-
-
-           
-
-
-            ///* 
-            // *
-            // */
-            //ShowConsoleOutput(dt);
-
-
-
-            string html = View.DataPresenter.CommonPageHTML();
-
-            Console.WriteLine("UserAdd() works");
-
-            return "UserAdd() is working";
-
-        }
-
-
-        static void ShowConsoleOutput(DataTable dt)
-        {
-
-            foreach (DataColumn col in dt.Columns)
-                Console.Write("{0} ", col.ColumnName);
-
-
-            foreach (DataRow row in dt.Rows)
-            {
-                Console.WriteLine();
-                foreach (DataColumn col in dt.Columns)
-                    Console.Write("{0} ", row[col.ColumnName]);
-            }
-            Console.WriteLine();
-
-        }
-
-        //#$%^&*
-        public string Version()
-        {
-            //e.g. - you have to take Guid from User's session data
-            Guid key = Guid.NewGuid();
-            if (User.GetUser(key).status == "Admin")
-            {
-                //Execute function
-                Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().Name);
-                return Gapp.Gap.AssemblyVersion();
-            }
-
-
-            return "Access denied";
-        }
-
-        public void SendSMS()
-        {
-            //Model.testRingSMS RC = new Model.testRingSMS();
-            Model.testRingSMS.test_rcsms();
-        }
-
-
-      
-
-        /*******************************************************************************************************************\
-        *                                                                                                                  *
-        \*******************************************************************************************************************/
-    }
-}
+*/

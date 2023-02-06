@@ -213,6 +213,20 @@ namespace View
                     placeholder=''>
                 </div>
 
+                
+
+            </form>";
+
+            string passwordForm = @"
+
+                <div class='group'>
+                    <label for=''>Password</label>
+                    <input type = 'text' name= 'login'
+                    value= '' 
+
+                    placeholder=''>
+                </div>
+
                 <div class='group'>
                     <button type = 'submit' name='do_signup'>Register</button>
                 </div>
@@ -220,6 +234,7 @@ namespace View
             </form>";
 
             html += RegForm;
+            html += passwordForm;
 
             html += "</table> </body></html>";
 

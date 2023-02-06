@@ -28,15 +28,22 @@
 //Update: DZ230110 - Converted AllUsers Dictionary in the DataTables, created public method showing the table - 
 //changed Dict accesibillity, Dt->HTML code added
 
+//Update: DZ230206 - Login method (AddUser) connected to the interface and works in system. This is test version,
+//so username and password are given through GET method, so they should be typed in URL.
+//Sample to use: http://localhost/wcfDaniil/AddUser?userName=Gordon&password=4321 - is your data, which will create Admin,
+//and store the key in code. If you want to login as a user, use other data.
+//Once you logged in, Version function should be tested; If your status is Admin, it will show assembly version. If status is User,
+//it will deny access. 
+//Format of output in console was changed. Error caused by writing a file in C:\ServiceLog.text now is fixed. Info and all other 
+//methods work on my machine.
+
+
 /* Instructions to test last update.
  * add few users using UsersAdd(userName) method. | http://localhost/wcfDaniil/UserAdd?userName=Test
  * Then, call printAllUsers(). | http://localhost/wcfDaniil/printAllUsers
  */
 
 
-
-//Convert Dictionary in the DataTables, create public method showing the table - test it with postman,
-//change class accesibillity, look for the code Dt->HTML
 
 
 
@@ -49,7 +56,7 @@ using System.Net;
 using System.ServiceProcess;
 using System.Diagnostics;
 using Model;
-//using System.Collections.Generic;
+
 
 namespace webDaniil
 {
@@ -62,6 +69,8 @@ namespace webDaniil
         \*******************************************************************************************************************/
 
         public static string SERVICE_NAME = "DZ_test";
+
+        public static string domain = "http://localhost/wcfDaniil";
 
         
         public static Guid SERVICE_ID = Guid.NewGuid();
@@ -78,11 +87,15 @@ namespace webDaniil
                     testRingSMS testRingSMS = new testRingSMS();
                     testRingSMS.test_rcsms();
 
+                    Service1 s1 = new Service1();
 
-                    Console.WriteLine(SERVICE_NAME);
+                    //Service1._HOST.ToString(); - doesn't work
+
+                    Console.WriteLine("OK Launched:  " + domain);
                     Console.WriteLine(GAPP.Gap.AssemblyVersion());
 
-                    Service1 s1 = new Service1();
+                   
+                    
 
                     s1.OnDebug();
                     

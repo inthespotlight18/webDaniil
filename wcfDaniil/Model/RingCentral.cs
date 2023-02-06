@@ -112,7 +112,7 @@ namespace Model
                 postrequest.AddJsonBody(postbody);
 
                 RestResponse postresponse = client.Execute(postrequest);
-                Console.WriteLine("postresponse.content[{0}]", postresponse.Content);
+                //Console.WriteLine("postresponse.content[{0}]", postresponse.Content);
 
 
             }

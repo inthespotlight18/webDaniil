@@ -25,6 +25,9 @@ namespace wcfDaniil
         Stream ShowClientIP();
 
         [WebGet]
+        Stream Login();
+
+        [WebGet]
         int GetInfo();
 
         [WebGet]
@@ -43,7 +46,10 @@ namespace wcfDaniil
         string Version();
 
         [WebGet]
-        string UserAdd(string userName);
+        WebServiceHost GetHost();
+
+        [WebGet]
+        string AddUser(string userName, string password);
 
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json,
            ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest,

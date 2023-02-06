@@ -9,6 +9,11 @@ namespace webDaniil
     public partial class Service1 : ServiceBase
     {
         public static WebServiceHost _HOST { get; set; }
+
+        static string fileName = @"\ServiceLog.txt";
+        static string workingDirectory = Environment.CurrentDirectory;
+        static string p = Directory.GetParent(workingDirectory).Parent.Parent.FullName + fileName;
+
         public Service1()
         {
             InitializeComponent();
@@ -16,7 +21,8 @@ namespace webDaniil
 
         protected override void OnStart(string[] args)
         {
-            File.WriteAllText(@"C:\ServiceLog.txt", "\n OnStart() +_+_+");
+            //File.WriteAllText(@"C:\ServiceLog.txt", "\n OnStart() +_+_+");
+            File.WriteAllText(p, "\n OnStart() +_+_+");
 
             Uri httpUrl = new Uri("http://localhost:80/");
 
@@ -29,9 +35,10 @@ namespace webDaniil
             
         }
 
+
         protected override void OnStop()
         {
-            File.WriteAllText(@"C:\ServiceLog.txt", "\n OnStop() -_-_-");
+            File.WriteAllText(p, "\n OnStop() -_-_-");
 
             _HOST.Close();
         }

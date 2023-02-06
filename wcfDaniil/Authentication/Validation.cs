@@ -15,7 +15,7 @@ namespace wcfDaniil
             
         }
 
-        public User ValidateUserData(string userName, string password)
+        public Guid ValidateUserData(string userName, string password)
         {
             //string ValidateResponse;
 
@@ -34,7 +34,7 @@ namespace wcfDaniil
                 //might be commented
                 AdminsId.Add(key.ToString());
 
-                return User.GetUser(key);    
+                return key;    
 
             }   
             
@@ -42,7 +42,7 @@ namespace wcfDaniil
             else
             {
                 Guid key = User.UserAdd(userName, "User");
-                return User.GetUser(key);
+                return key;
             }
 
 
