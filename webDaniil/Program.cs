@@ -18,7 +18,6 @@
 //go to the Body (under website url), click raw, and add JSON code similar to the one below:
 
 
-
 //Update: DZ220918 - Info() is method fixed, Assembly version added, testing with postman done
 //Update: DZ220922 - Setting variable changed, webDaniil.exe now starts the program as well, OnDebug() function added
 //Update: DZ220925 - File version changed, project rebuilt
@@ -37,6 +36,11 @@
 //Format of output in console was changed. Error caused by writing a file in C:\ServiceLog.text now is fixed. Info and all other 
 //methods work on my machine.
 
+//Update: DZ230305 - GordLogin() method added, stores private string in oWCFDaniil. Language issue (with ????) was solved,
+//however it still doesnt work witjout frameworks
+
+
+//logon, user claims
 
 /* Instructions to test last update.
  * add few users using UsersAdd(userName) method. | http://localhost/wcfDaniil/UserAdd?userName=Test
@@ -56,7 +60,7 @@ using System.Net;
 using System.ServiceProcess;
 using System.Diagnostics;
 using Model;
-
+using System.Text;
 
 namespace webDaniil
 {
@@ -72,7 +76,6 @@ namespace webDaniil
 
         public static string domain = "http://localhost/wcfDaniil";
 
-        
         public static Guid SERVICE_ID = Guid.NewGuid();
 
       
@@ -84,18 +87,22 @@ namespace webDaniil
                 ServicePointManager.SecurityProtocol = (SecurityProtocolType)(0xc0 | 0x300 | 0xc00);
                 if (GAPP.Gap.Test)
                 {
+
+                 //   Console.OutputEncoding = System.Text.Encoding.Unicode;
+
                     testRingSMS testRingSMS = new testRingSMS();
                     testRingSMS.test_rcsms();
 
                     Service1 s1 = new Service1();
 
-                    //Service1._HOST.ToString(); - doesn't work
+                    //Service1._HOST.ToString(); - doesn't work+
+                    string str = "OK Launched:  " + domain;
 
-                    Console.WriteLine("OK Launched:  " + domain);
-                    Console.WriteLine(GAPP.Gap.AssemblyVersion());
+                    byte[] utf8Bytes = Encoding.UTF8.GetBytes(str);
+                    str = Encoding.UTF8.GetString(utf8Bytes);
 
-                   
-                    
+                    Console.WriteLine(str);
+                    Console.WriteLine(GAPP.Gap.AssemblyVersion());                  
 
                     s1.OnDebug();
                     

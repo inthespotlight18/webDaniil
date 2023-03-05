@@ -28,6 +28,9 @@ namespace wcfDaniil
         Stream Login();
 
         [WebGet]
+        void GordLogin();
+
+        [WebGet]
         int GetInfo();
 
         [WebGet]

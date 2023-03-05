@@ -11,14 +11,14 @@ using System.Collections.Generic;
 
 namespace wcfDaniil
 {
-    
+     
     public class oWCFDaniil : iWCFDaniil
     {
         /*******************************************************************************************************************\
          *                                                                                                                 *
         \*******************************************************************************************************************/
 
-        private static Guid key;
+        private static Guid? key;
 
         public Validation V = new Validation();
         
@@ -261,7 +261,7 @@ namespace wcfDaniil
             Console.WriteLine();
 
         }
-
+       
         //STATUS dependent function
 
         public string Version()
@@ -270,14 +270,14 @@ namespace wcfDaniil
             //Login first - admin only allowed to see the version output
             try
             {  
-                if (User.GetUser(key).status == "Admin")
+                if (User.GetUser( (Guid) key ).status == "Admin")
                 {
 
                     //Execute function
                     Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().Name);
                     return Gapp.Gap.AssemblyVersion();
                 }
-                Console.WriteLine(User.GetUser(key).status);
+                Console.WriteLine(User.GetUser( (Guid) key ).status);
             }
             catch (Exception ex)
             {
@@ -296,8 +296,19 @@ namespace wcfDaniil
         }
 
 
+        public void GordLogin()
+        {
+            key = V.ValidateUserData("Gordon", "4321");     
+        
+            string s = (key == null) ?  "NULL" : key.ToString();
+            Console.WriteLine(s);
+        }
+
+
         public Stream Login()
         {
+           // key = V.ValidateUserData("Gordon", "4321");
+
             string html = View.DataPresenter.LoginFormsHTML();
             WebOperationContext.Current.OutgoingResponse.ContentType = "text/html";
             //return new MemoryStream(Encoding.UTF8.GetBytes(DataPresenter.LoginFormsHTML()));

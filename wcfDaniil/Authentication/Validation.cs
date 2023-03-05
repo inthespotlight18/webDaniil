@@ -15,7 +15,7 @@ namespace wcfDaniil
             
         }
 
-        public Guid ValidateUserData(string userName, string password)
+        public Guid ?ValidateUserData(string userName, string password)
         {
             //string ValidateResponse;
 
@@ -41,8 +41,8 @@ namespace wcfDaniil
             //Other users
             else
             {
-                Guid key = User.UserAdd(userName, "User");
-                return key;
+                //Guid key = User.UserAdd(userName, "User");
+                return null;
             }
 
 
