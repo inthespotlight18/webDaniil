@@ -36,8 +36,7 @@
 //Format of output in console was changed. Error caused by writing a file in C:\ServiceLog.text now is fixed. Info and all other 
 //methods work on my machine.
 
-//Update: DZ230305 - GordLogin() method added, stores private string in oWCFDaniil. Language issue (with ????) was solved,
-//however it still doesnt work witjout frameworks
+//Update: DZ230305 - Token system fixed, GordLogin() fixed, language issue in deployment is fixed.
 
 
 //logon, user claims

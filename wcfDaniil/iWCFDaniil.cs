@@ -46,7 +46,7 @@ namespace wcfDaniil
         Stream printUsersDictWeb();
 
         [WebGet]
-        string Version();
+        string Version(string token);
 
         [WebGet]
         WebServiceHost GetHost();

@@ -18,7 +18,7 @@ namespace wcfDaniil
          *                                                                                                                 *
         \*******************************************************************************************************************/
 
-        private static Guid? key;
+        //private static Guid? key;
 
         public Validation V = new Validation();
         
@@ -138,28 +138,7 @@ namespace wcfDaniil
 
             Validation V = new Validation();
 
-            //name, ip, password
-
-            //boolean or check string
-
-            //if (V.ValidateUserData(userName, password).status == "Admin")
-            //{
-            //    string ip = GetClientIP();
-            //    Model.User.UserAdd(userName, ip);
-            //    access = "Access was granted, Welcome!";
-            //}
-            //if (V.ValidateUserData(userName, password).status == "User")
-            //{
-            //    access = "Access was Blocked, try again.";
-            //}
-
-
-
-
-
-            // return V.ValidateUserData(userName, password);
-
-            //tell the browser to create cookie, using key later in security, 
+    
             return access;
 
         }
@@ -213,34 +192,11 @@ namespace wcfDaniil
        
         public string AddUser(string userName, string password)
         {
-            key = V.ValidateUserData(userName, password);
+            Guid key = V.ValidateUserData(userName, password);
 
             return key.ToString();
 
-            ////string ip = GetClientIP();
-            //string status = "User";
-            //var key = User.UserAdd(userName, status);
-            //Console.WriteLine($"{key} {status}");
-            //var U = User.GetUser(key);
-
-
-            //foreach (var prop in U.GetType().GetProperties())
-            //{
-            //    Console.WriteLine("{0}={1}", prop.Name, prop.GetValue(U, null) + "$%$%$%$%");
-            //}
-
-            ////return str.Remove(str.Length - 1) + "}";
-
-
-            ///*******************************************************************************************************************\
-            // *                                                                                                                 *
-            //\*******************************************************************************************************************/
-
-            //string html = View.DataPresenter.CommonPageHTML();
-
-            //Console.WriteLine("UserAdd() works");
-
-            //return "UserAdd() is working";
+            
 
         }
 
@@ -264,20 +220,21 @@ namespace wcfDaniil
        
         //STATUS dependent function
 
-        public string Version()
+        public string Version(string token)
         {
+            Guid k = Guid.Parse(token);
             
             //Login first - admin only allowed to see the version output
             try
             {  
-                if (User.GetUser( (Guid) key ).status == "Admin")
+                if (User.GetUser( k ).status == "Admin")
                 {
 
                     //Execute function
                     Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().Name);
                     return Gapp.Gap.AssemblyVersion();
                 }
-                Console.WriteLine(User.GetUser( (Guid) key ).status);
+                Console.WriteLine(User.GetUser( k ).status);
             }
             catch (Exception ex)
             {
@@ -298,10 +255,10 @@ namespace wcfDaniil
 
         public void GordLogin()
         {
-            key = V.ValidateUserData("Gordon", "4321");     
+            Guid key = V.ValidateUserData("Gordon", "4321");     
         
-            string s = (key == null) ?  "NULL" : key.ToString();
-            Console.WriteLine(s);
+            //string s = (key == null) ?  "NULL" : key.ToString();
+            Console.WriteLine(key.ToString());
         }
 
 
@@ -319,70 +276,100 @@ namespace wcfDaniil
 }
 
 
-        /*******************************************************************************************************************\
-         *                                                                                                                 *
-        \*******************************************************************************************************************
+/*******************************************************************************************************************\
+ *                                                                                                                 *
+\*******************************************************************************************************************
 
 
-        public DataSet SampleDS()
-        {
-            DataTable dt = new DataTable("Nadia");
-            dt.Columns.Add("code");
-            dt.Columns.Add("First Name");
-            dt.Rows.Add("1", "sister");
-            dt.Rows.Add("2", "brother");
+public DataSet SampleDS()
+{
+    DataTable dt = new DataTable("Nadia");
+    dt.Columns.Add("code");
+    dt.Columns.Add("First Name");
+    dt.Rows.Add("1", "sister");
+    dt.Rows.Add("2", "brother");
 
-            DataSet ds = new DataSet("dsTest");
-            ds.Tables.Add(dt);
+    DataSet ds = new DataSet("dsTest");
+    ds.Tables.Add(dt);
 
-            return ds;
-        }
-
-
-        public int PostTest(DataSet ds)
-        {
-            return ds.Tables.Count;
-        }
+    return ds;
+}
 
 
-        /*******************************************************************************************************************\
-         *                                                                                                                 *
-        \*******************************************************************************************************************
-
-        public string Trap(int n)
-        {
-            try
-            {
-                if (n == 666) throw new ArgumentNullException(paramName: nameof(n), message: "parameter can't be 666.");
-                return String.Format("OK|{0}|{1}", DateTime.Now, n);
-            }
-            catch (Exception ex)
-            {
-                return String.Format("FAIL |{0}", ex.Message);
-            }
-        }
+public int PostTest(DataSet ds)
+{
+    return ds.Tables.Count;
+}
 
 
-        /*******************************************************************************************************************\
-         *                                                                                                                 *
-        \*******************************************************************************************************************
+/*******************************************************************************************************************\
+ *                                                                                                                 *
+\*******************************************************************************************************************
 
-        public string CallMS()
-        {
-            try
-            {
-                int[] array = { 12 };
-                return array[2].ToString();
-            }
-            catch (Exception ex)
-            {
-                string msg = "additional info";
-                Console.WriteLine(ex.Message);
-                new XRAY.clientXRAY().Error(System.Reflection.MethodBase.GetCurrentMethod(), msg, ex);
-                return string.Format("FAIL|[{0}]", ex.Message);
+public string Trap(int n)
+{
+    try
+    {
+        if (n == 666) throw new ArgumentNullException(paramName: nameof(n), message: "parameter can't be 666.");
+        return String.Format("OK|{0}|{1}", DateTime.Now, n);
+    }
+    catch (Exception ex)
+    {
+        return String.Format("FAIL |{0}", ex.Message);
+    }
+}
 
-            }
-            return "nothing";
-        }
 
-*/
+/*******************************************************************************************************************\
+ *                                                                                                                 *
+\*******************************************************************************************************************
+
+public string CallMS()
+{
+    try
+    {
+        int[] array = { 12 };
+        return array[2].ToString();
+    }
+    catch (Exception ex)
+    {
+        string msg = "additional info";
+        Console.WriteLine(ex.Message);
+        new XRAY.clientXRAY().Error(System.Reflection.MethodBase.GetCurrentMethod(), msg, ex);
+        return string.Format("FAIL|[{0}]", ex.Message);
+
+    }
+    return "nothing";
+}
+
+/*******************************************************************************************************************\
+ *                                                                                                                 *
+\*******************************************************************************************************************
+
+AddUser()
+
+////string ip = GetClientIP();
+    //string status = "User";
+    //var key = User.UserAdd(userName, status);
+    //Console.WriteLine($"{key} {status}");
+    //var U = User.GetUser(key);
+
+
+    //foreach (var prop in U.GetType().GetProperties())
+    //{
+    //    Console.WriteLine("{0}={1}", prop.Name, prop.GetValue(U, null) + "$%$%$%$%");
+    //}
+
+    ////return str.Remove(str.Length - 1) + "}";
+
+
+    ///*******************************************************************************************************************\
+    // *                                                                                                                 *
+    //\*******************************************************************************************************************/
+
+//string html = View.DataPresenter.CommonPageHTML();
+
+//Console.WriteLine("UserAdd() works");
+
+//return "UserAdd() is working";
+
