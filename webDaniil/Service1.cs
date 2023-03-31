@@ -26,10 +26,13 @@ namespace webDaniil
 
             Uri httpUrl = new Uri("http://localhost:80/");
 
-            _HOST = new WebServiceHost(typeof(wcfDaniil.oWCFDaniil), httpUrl);
+            _HOST = new WebServiceHost(typeof(wcfDaniil.oWCFDaniil), httpUrl); // wcfDaniil.oHardCodedLogin
 
             var binding = new WebHttpBinding();
             _HOST.AddServiceEndpoint(typeof(wcfDaniil.iWCFDaniil), binding, "wcfDaniil");
+            //_HOST.AddServiceEndpoint(typeof(wcfDaniil.iLoginHelper), binding, "wcfDaniil");
+
+           
 
             _HOST.Open();
             

@@ -2,7 +2,7 @@
 using System.ServiceModel.Web;
 using System.IO;
 using System.Data;
-
+using System;
 
 namespace wcfDaniil
 {
@@ -19,16 +19,19 @@ namespace wcfDaniil
         //string ValidateUserData(string userName, string password);
 
         [WebGet]
+        string TEST();
+
+        [WebGet]
         Stream Info();
 
         [WebGet]
         Stream ShowClientIP();
 
         [WebGet]
-        Stream Login();
+        string GordLogin();
 
         [WebGet]
-        void GordLogin();
+        string GetToken(string userName, string password);
 
         [WebGet]
         int GetInfo();
@@ -62,7 +65,16 @@ namespace wcfDaniil
         // [WebInvoke(Method = "POST", UriTemplate = "/ValidatePOST?userName={userName}")]
         string ValidatePOST(string userName, string password); //search using token key
 
-        
+
+        /*******************************************************************************************************************\
+         *                         Methods used for work with iLoginHelper objects                                                                                        *
+        \*******************************************************************************************************************/
+
+        [WebGet]
+        Stream Login(string userName, string password);
+
+        [WebGet]
+        bool Authorize(string token, string security_action);
 
         /*******************************************************************************************************************\
          *                                                                                                                 *

@@ -87,8 +87,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Authentication\LoginFormHtml.cs" />
-    <Compile Include="Authentication\Validation.cs" />
+    <Compile Include="Authentication\iLoginHelper.cs" />
+    <Compile Include="Authentication\oHardCodedLogin.cs" />
+    <Compile Include="Authentication\oMSIdentLogin.cs" />
+    <Compile Include="Authentication\oTugItLogin.cs" />
+    <Compile Include="Validation\LoginFormHtml.cs" />
+    <Compile Include="Validation\Validation.cs" />
     <Compile Include="Gapp\GapLib.cs" />
     <Compile Include="iWCFDaniil.cs" />
     <Compile Include="Model\lclExcel.cs" />
@@ -104,5 +108,6 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -9,13 +9,14 @@ using View;
 using Model;
 using System.Collections.Generic;
 
+
 namespace wcfDaniil
 {
      
     public class oWCFDaniil : iWCFDaniil
     {
-        /*******************************************************************************************************************\
-         *                                                                                                                 *
+        /*******************************************************************************************************************\                           
+         *                            Implementation of iWCFDaniil interface                                              *                          
         \*******************************************************************************************************************/
 
         //private static Guid? key;
@@ -27,12 +28,12 @@ namespace wcfDaniil
         {
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().Name);
             return 99;
-        }
+        }     
 
         /*******************************************************************************************************************\
          *                                                                                                                 *
         \*******************************************************************************************************************/
- 
+
         private string GetClientIP()
         {
             OperationContext context = OperationContext.Current;
@@ -150,6 +151,16 @@ namespace wcfDaniil
         public Stream printUsersDictWeb()
         {
             Model.User.printUsersDict();
+
+            //oHardCodedLogin x = new oHardCodedLogin();
+            //x.Login("qwe", "abc");
+
+            iLoginHelper y = new oHardCodedLogin();
+            y.Login("qwe", "abc");
+            iLoginHelper z = new oTugItLogin();
+            z.Login("qwe", "abc");
+
+
             string html = View.DataPresenter.DictToHTML(Model.User.GetAllUsers());
             WebOperationContext.Current.OutgoingResponse.ContentType = "text/html";
             //return new MemoryStream(Encoding.UTF8.GetBytes(DataPresenter.LoginFormsHTML()));
@@ -192,12 +203,16 @@ namespace wcfDaniil
        
         public string AddUser(string userName, string password)
         {
-            Guid key = V.ValidateUserData(userName, password);
+            Guid key = V.UserClassification(userName, password);
 
-            return key.ToString();
+            if (key == Guid.Empty) return "Can't create a user. If you want to refresh token, use another method.";
 
-            
+            return key.ToString();   
+        }
 
+        public string GetToken (string userName, string password)
+        {
+            return User.GetToken(userName, password).ToString();
         }
 
 
@@ -253,26 +268,61 @@ namespace wcfDaniil
         }
 
 
-        public void GordLogin()
+        public string GordLogin()
         {
-            Guid key = V.ValidateUserData("Gordon", "4321");     
-        
-            //string s = (key == null) ?  "NULL" : key.ToString();
-            Console.WriteLine(key.ToString());
+            Guid key = V.UserClassification("Gordon", "4321");        
+
+            return key == Guid.Empty ? "User with this name already logged in!" : key.ToString();
+
+            ////string s = (key == null) ?  "NULL" : key.ToString();
+            //Console.WriteLine(key.ToString());
+
+            //return key.ToString();
+        }
+
+     
+
+        public string TEST()
+        {
+           // Guid k = Guid.Parse("rytuwqe-213123-sadasjdkas");
+
+            //Console.WriteLine(User.GetUser( k ));
+            Console.WriteLine("TEST()");
+
+            return "";
         }
 
 
-        public Stream Login()
+        /*******************************************************************************************************************\                            
+         *                            Implementation of iLoginHelper objects                                              *                            
+        \*******************************************************************************************************************/
+
+        public Stream Login(string userName, string password)
         {
-           // key = V.ValidateUserData("Gordon", "4321");
+            //oHardCodedLogin x = new oHardCodedLogin();
+            //x.Login("qwe", "abc");
+
+            iLoginHelper oHardCoded = new oHardCodedLogin();
+            oHardCoded.Login("qwe", "abc");
+
+            iLoginHelper oTugIt = new oTugItLogin();
+            oTugIt.Login("qwe", "abc");
+
 
             string html = View.DataPresenter.LoginFormsHTML();
             WebOperationContext.Current.OutgoingResponse.ContentType = "text/html";
             //return new MemoryStream(Encoding.UTF8.GetBytes(DataPresenter.LoginFormsHTML()));
             return new MemoryStream(Encoding.UTF8.GetBytes(html));
         }
+         
+
+        public bool Authorize(string token, string security_action)
+        {
+            return true;
+        }
 
     }
+
 }
 
 
@@ -372,4 +422,10 @@ AddUser()
 //Console.WriteLine("UserAdd() works");
 
 //return "UserAdd() is working";
+
+///*******************************************************************************************************************\
+// *                                                                                                                 *
+//\*******************************************************************************************************************/
+
+
 

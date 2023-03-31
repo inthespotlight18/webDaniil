@@ -37,15 +37,8 @@
 //methods work on my machine.
 
 //Update: DZ230305 - Token system fixed, GordLogin() fixed, language issue in deployment is fixed.
-
-
-//logon, user claims
-
-/* Instructions to test last update.
- * add few users using UsersAdd(userName) method. | http://localhost/wcfDaniil/UserAdd?userName=Test
- * Then, call printAllUsers(). | http://localhost/wcfDaniil/printAllUsers
- */
-
+//Update: DZ230330 - Created interface for Authentication and Login (iLoginHelper).
+//User system was significantly updated. Converted hard code in the iLoginHelper class.
 
 
 
