@@ -22,6 +22,13 @@ namespace wcfDaniil
         //private static Guid? key;
 
         public Validation V = new Validation();
+
+        private enum iLoginHelperObjects: int
+        {
+            oHardCodedLogin = 0,
+            oTugItLogin = 1,
+            oMSIdentLogin = 2
+        }
         
 
         public int GetInfo()
@@ -285,11 +292,7 @@ namespace wcfDaniil
         public string TEST()
         {
            // Guid k = Guid.Parse("rytuwqe-213123-sadasjdkas");
-
-            //Console.WriteLine(User.GetUser( k ));
-            Console.WriteLine("TEST()");
-
-            return "";
+            return "TEST";
         }
 
 
@@ -297,17 +300,29 @@ namespace wcfDaniil
          *                            Implementation of iLoginHelper objects                                              *                            
         \*******************************************************************************************************************/
 
-        public Stream Login(string userName, string password)
+        public Stream Login(string userName, string password, string iLoginHelperObj)
         {
             //oHardCodedLogin x = new oHardCodedLogin();
             //x.Login("qwe", "abc");
+            int iLogObj = Int32.Parse(iLoginHelperObj);
 
-            iLoginHelper oHardCoded = new oHardCodedLogin();
-            oHardCoded.Login("qwe", "abc");
-
-            iLoginHelper oTugIt = new oTugItLogin();
-            oTugIt.Login("qwe", "abc");
-
+            Console.WriteLine(iLogObj);
+                
+            if (iLogObj == 0)
+            {
+                iLoginHelper oHardCoded = new oHardCodedLogin();
+                Console.WriteLine(oHardCoded.Login("HardCode", "abc123"));
+            } 
+            else if(iLogObj == 1) 
+            {
+                iLoginHelper oTugIt = new oTugItLogin();
+                oTugIt.Login("oTugIt", "abc");
+            }
+            else if (iLogObj == 2)
+            {
+                iLoginHelper oMSIdentLogin = new oMSIdentLogin();
+                oMSIdentLogin.Login("oMSIdentLogin", "abc");
+            }
 
             string html = View.DataPresenter.LoginFormsHTML();
             WebOperationContext.Current.OutgoingResponse.ContentType = "text/html";

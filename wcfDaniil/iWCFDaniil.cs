@@ -71,7 +71,7 @@ namespace wcfDaniil
         \*******************************************************************************************************************/
 
         [WebGet]
-        Stream Login(string userName, string password);
+        Stream Login(string userName, string password, string iLoginHelperObj);
 
         [WebGet]
         bool Authorize(string token, string security_action);

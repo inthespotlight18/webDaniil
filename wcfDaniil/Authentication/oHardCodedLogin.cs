@@ -26,7 +26,8 @@ namespace wcfDaniil
             {
                 if (User.UserAdd(pair.Key, pair.Value) == Guid.Empty)
                 {
-                   //updating users and refreshing tokens, if they already exist
+                    //updating users and refreshing tokens, if they already exist
+                   // Console.WriteLine(pair.Key + " , " + pair.Value);
                     User.GetToken(pair.Key, pair.Value);
                 }
             }

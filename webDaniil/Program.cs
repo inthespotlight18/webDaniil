@@ -59,7 +59,6 @@ namespace webDaniil
 
     class Program
     {
-
         /*******************************************************************************************************************\
          *                                                                                                                 *
         \*******************************************************************************************************************/
@@ -70,7 +69,16 @@ namespace webDaniil
 
         public static Guid SERVICE_ID = Guid.NewGuid();
 
+       // public static int classType = 1;
+
+        enum UserStatus
+        {
+            User = 0,
+            Admin = 1
+        }
+
       
+
         static void Main()
         {
 
@@ -79,9 +87,7 @@ namespace webDaniil
                 ServicePointManager.SecurityProtocol = (SecurityProtocolType)(0xc0 | 0x300 | 0xc00);
                 if (GAPP.Gap.Test)
                 {
-
-                 //   Console.OutputEncoding = System.Text.Encoding.Unicode;
-
+                    //Console.OutputEncoding = System.Text.Encoding.Unicode;
                     testRingSMS testRingSMS = new testRingSMS();
                     testRingSMS.test_rcsms();
 
@@ -114,7 +120,10 @@ namespace webDaniil
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                byte[] utf8Bytes = Encoding.UTF8.GetBytes(ex.Message);
+                string str = Encoding.UTF8.GetString(utf8Bytes);
+                Console.WriteLine(str);
+                //Console.WriteLine(ex.Message);
                 Trace.TraceWarning(ex.Message);
                 if (GAPP.Gap.Test) Console.ReadKey();
             }
